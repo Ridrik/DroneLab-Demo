@@ -1,0 +1,2 @@
+v0.2.2 – October 2025
+- Initial demo release

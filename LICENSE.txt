@@ -1,0 +1,7 @@
+DroneLab – 3D Drone Simulator and Visualizer
+Copyright (c) 2025 Rodrigo Rosa
+
+This software is provided solely for educational and research purposes.
+All rights reserved. Redistribution or commercial use without permission is prohibited.
+
+The author provides this software “as is”, without warranty of any kind, express or implied.
