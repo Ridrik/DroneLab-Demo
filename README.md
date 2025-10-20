@@ -5,6 +5,12 @@
 **Developer:** Rodrigo Rosa  
 **Date:** October 2025  
 
+------------------------------------------------------------
+Project Showcase and Live Media   
+See screenshots, GIFs, and videos on the public project page:                        
+🌐 Live showcase: https://ridrik.github.io/DroneLabShowcase/   
+💾 GitHub page: https://github.com/Ridrik/DroneLabShowcase
+
 DroneLab is a 3D drone visualization and simulation tool developed in **C++ / OpenGL / ImGui**, 
 focusing on **Guidance, Navigation, and Control (GNC)**.
 
