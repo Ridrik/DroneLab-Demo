@@ -1,2 +1,8 @@
+v0.3.0 - November 2025
+### Added
+- New simulator backend mode, using MAVLink UDP connection to send sensor data and receive actuator commands.
+- Updated Actuator/ESC modes with open loop and closed loop options.
+- Other general improvements.
+
 v0.2.2 – October 2025
 - Initial demo release
