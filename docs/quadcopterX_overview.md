@@ -1,7 +1,7 @@
 # Quadcopter Actuator Model (X Configuration)
 
 This document describes the quadcopter actuator system used in the simulator.  
-It covers the motor geometry, MAVLink actuator input mapping, and the two internal
+It covers the motor geometry, actuator default input mapping, and the two internal
 ESC/thrust models (open-loop and closed-loop).
 
 ---
@@ -18,7 +18,8 @@ The quad is in **X configuration**, with motors arranged diagonally around the c
 
 ### Motor Indexing and Rotation Directions
 
-Motor indices follow the simulator’s **actuator order 0–3**, all normalized 0–1.
+Motor indices follow the simulator’s **actuator order 0–3**, all normalized 0–1. The actual order and orientation is configurable
+in the GUI Editor, under the `Mixer` tab. The default configuration is as follows:
 
             Front (+X)
                 ^
@@ -53,16 +54,18 @@ This arrangement ensures that opposite motors spin in the same direction for tor
 
 When the simulator is in backend mode - connected via UDP with MAVlink message formatting - it expects the **HIL_ACTUATOR_CONTROLS** message, taking the first four floats:
 
-- `controls[0]` → Motor 0 (Front Right)
-- `controls[1]` → Motor 1 (Rear Left)
-- `controls[2]` → Motor 2 (Front Left)
-- `controls[3]` → Motor 3 (Rear Right)
+- `controls[0]` → Motor 0
+- `controls[1]` → Motor 1
+- `controls[2]` → Motor 2
+- `controls[3]` → Motor 3
 
 Each value must be in the normalized range:
 `0.0 = no thrust`
 `1.0 = maximum thrust`
 
 If values are out of range or missing, rotor thrust may be clamped or the drone may fail to lift.
+
+**Note: Ensure that your flight controller is in sync with the Mixer mapping by checking or edit in the GUI Editor (`Mixer` Tab)**
 
 ---
 
@@ -161,7 +164,7 @@ This simulates **low-voltage cutoff** and **thermal protection**, preventing ove
 
 - **Frame:** Quadcopter X, body NED frame  
 - **Input:** HIL_ACTUATOR_CONTROLS (first four floats), only needed in MAVLink backend mode  
-- **Motor mapping:** 0: FR (CCW), 1: RL (CCW), 2: FL (CW), 3: RR (CW)  
+- **Motor mapping:** Configurable in GUI. Defaults to 0: FR (CCW), 1: RL (CCW), 2: FL (CW), 3: RR (CW)  
 - **ESC models:**  
   - Open-loop: throttle → voltage → thrust  
   - Closed-loop: throttle → speed → PID → voltage → thrust  

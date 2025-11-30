@@ -1,27 +1,35 @@
 # MAVLink Interface (Early Implementation)
 
-The simulator uses a subset of standard MAVLink messages. All messages follow their official MAVLink definitions (refer to the MAVLink documentation for details).  
-This document describes the behavior in the initial implementation.
+The simulator implements a subset of standard MAVLink messages for Hardware-in-the-Loop (HIL) simulation. All messages follow official MAVLink definitions (see MAVLink documentation).
+
+This document describes the behavior of the current implementation.
 
 ---
 
-## 1. Heartbeat and System Status
+## 1. Heartbeat and Connection List
 
-The simulator publishes standard `HEARTBEAT` messages at a nominal rate.
+The simulator publishes standard `HEARTBEAT` messages at **1 Hz** when a session is running.
+Additionally, it checks for incoming hearbeats even before a session is running. Users should, therefore, check active connections, on the `MAVLink` tab, to ensure that your connected systems are recognized, given the setup chosen (ip, ports...)
 
 **Fields:**
 
 - **MAV_TYPE:** `MAV_TYPE_GENERIC`  
 - **MAV_AUTOPILOT:** `MAV_AUTOPILOT_INVALID`  
 - **system_status:**  
-  - `MAV_STATE_STANDBY` when uninitialized or paused  
+  - `MAV_STATE_STANDBY` when simulation is paused or finished/stopped  
   - `MAV_STATE_ACTIVE` when simulation is running  
-  - `MAV_STATE_POWEROFF` when simulation is stopped  
 - **base_mode:**  
   - When active: `MAV_MODE_FLAG_SAFETY_ARMED | MAV_MODE_FLAG_GUIDED_ENABLED`  
   - Otherwise: appropriate unarmed / standby combinations
 
 The simulator also publishes `HOME_POSITION` with the reference home coordinates on a regular basis.
+
+**Home Position:**  
+
+- The simulator also publishes `HOME_POSITION` at **1 Hz** when a simulation is running.  
+- Default reference coordinates are defined per scenario.  
+
+> These messages allow flight controllers to detect that the simulated vehicle is alive and its state.
 
 ---
 
@@ -53,7 +61,7 @@ HIL_SENSOR are published at the simulator IMU frequency rate. The following sign
 - Gyroscope  
 - Accelerometer  
 
-The following are **optional**, depending on sensor availability and update rates:
+The following are **optional**, depending on sensor availability and update rates (Controlled on the GUI):
 
 - Magnetometer  
 - Barometer  
@@ -68,34 +76,65 @@ The simulator updates only the fields corresponding to active sensors. The exter
 
 ## 4. Actuator Input (HIL_ACTUATOR_CONTROLS)
 
-The simulator expects incoming `HIL_ACTUATOR_CONTROLS` messages as its primary actuator interface.  
-All received actuator commands are logged for future replay.
+The simulator subscribes to `HIL_ACTUATOR_CONTROLS` as its primary actuator interface.
 
-**Actuator input rules:**
+**Actuator rules:**
 
-- Only the **first four** float channels are used.  
-- Values must be **normalized in the range** `0.0` to `1.0`.  
-- Commands correspond to a **Quadcopter X** configuration.  
-- Incorrect or missing values will prevent the vehicle from taking off or operating correctly.
+- Only the **first four float channels** are used  
+- Values are **normalized to 0.0–1.0**  
+- Default vehicle: **Quadcopter X** configuration  
+  - Channel mapping: **Configurable in the GUI Editor, under the `Mixer` Tab**
+- Incorrect or missing values prevent vehicle operation
 
----
-
-## 5. Run termination
-
-Currently, no automatic termination is made. The user shall, therefore, stop the run when appropriate.
+> More vehicle types will be supported in future versions.
 
 ---
 
-## 6. Summary
+## 5. Simulation States
 
-- Simulator **publishes:**  
-  - `HEARTBEAT`  
-  - `HOME_POSITION`  
-  - Mission broadcast (`MISSION_COUNT`, `MISSION_ITEM*`)  
-  - `HIL_SENSOR`  
-  - `HIL_GPS` (if GPS enabled)
+| Simulator state | Heartbeat `system_status` | Sensor publication | Notes |
+|-----------------|---------------------------|------------------|-------|
+| Running         | `MAV_STATE_ACTIVE`        | All active sensors | Normal operation |
+| Paused          | `MAV_STATE_STANDBY`       | None | actuator commands ignored |
+| Stopped         | `MAV_STATE_POWEROFF`      | None | Run ended; actuator commands ignored |
 
-- Simulator **receives:**  
-  - `HIL_ACTUATOR_CONTROLS` (channels 0–3, normalized 0–1)
+---
 
-- Mission flow is **simulator-provided only** in this version.
+## 6. Message Flow Overview
+
+```
+       Simulator
+      ┌───────────────┐
+      │ Heartbeat     │───► Flight Controller
+      │ Home Position │───► Flight Controller
+      │ Mission Items │───► Flight Controller
+      │ HIL_SENSOR    │───► Flight Controller
+      │ HIL_GPS       │───► Flight Controller
+      │ HIL_ACTUATORS │◄── Flight Controller
+      └───────────────┘
+```
+
+- Sensors and home/mission info are **published from the simulator**  
+- Sensor data contain the simulation time in microseconds. Note that this may or may not follow real time, due to options to pause, slow or fasten simulation during a live run.
+- Actuator commands are **received from the flight controller**  
+- Mission flow is **simulator-provided only** in this version
+
+---
+
+## 7. Summary
+
+**Publishes:**  
+
+- `HEARTBEAT` (1 Hz)  
+- `HOME_POSITION` (1 Hz)  
+- Mission broadcast (`MISSION_COUNT`, `MISSION_ITEM*`)  
+- `HIL_SENSOR` (IMU update rate)  
+- `HIL_GPS` (if enabled)
+
+**Receives:**  
+
+- `HIL_ACTUATOR_CONTROLS` (channels 0–3, normalized 0–1, Quad X mapping on GUI)
+
+**Mission flow:** Simulator-provided only
+
+**Default assumptions:** Quadcopter X; more vehicle types will be added

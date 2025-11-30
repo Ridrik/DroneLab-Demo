@@ -1,8 +1,17 @@
-v0.3.0 - November 2025
+## v0.4.0 - November 2025
+### Added
+- ROS2 Interface: receive simulator data from the simulator, and send actuator commands when on backend mode.
+See `docs/ros2_interface.md` for more. Available on Linux builds.
+- AppImage distribution option for Linux builds.
+### Updated
+- User data (missions, runs, settings, logs) are now pointed to user default locations (e.g APPDATA on Windows, XDG_DATA_HOME on Linux)
+
+## v0.3.0 - November 2025
 ### Added
 - New simulator backend mode, using MAVLink UDP connection to send sensor data and receive actuator commands.
-- Updated Actuator/ESC modes with open loop and closed loop options.
-- Other general improvements.
+See `docs/mavlink_overview.md` for more.
+- Updated Actuator/ESC modes with open loop and closed loop options. See `docs/quadcopterX_overview.md` for a summary.
+- Other general GUI improvements.
 
-v0.2.2 – October 2025
+## v0.2.2 – October 2025
 - Initial demo release
