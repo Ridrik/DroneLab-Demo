@@ -1,6 +1,6 @@
 # DroneLab - 3D simulator and visualizer tool for drone guidance, navigation, control (GNC)
 
-**Platform:** Windows 10/11 (64-bit), Linux (tested on Ubuntu 22.04, AppImage/.tar.gz packages)
+**Platform:** Windows 10/11 (64-bit), Linux (tested on Ubuntu 22.04, AppImage/.tar.gz packages)   
 **Developer:** Rodrigo Rosa  
 **Version:** v4.0.0 Demo (November 2025)  
 
