@@ -1,8 +1,8 @@
 # DroneLab - 3D simulator and visualizer tool for drone guidance, navigation, control (GNC)
 
-**Platform:** Windows 10/11 (64-bit)  
+**Platform:** Windows 10/11 (64-bit), Linux (tested on Ubuntu 22.04, AppImage/.tar.gz packages)
 **Developer:** Rodrigo Rosa  
-**Version:** Demo (October 2025)  
+**Version:** v4.0.0 Demo (November 2025)  
 
 ---
 
@@ -28,6 +28,7 @@ It focuses on **Guidance, Navigation, and Control (GNC)** — providing a lightw
 - Replay and telemetry visualization  
 - Adjustable GNC parameters  
 - Lightweight and intuitive interface  
+- (Experimental) MAVLink and ROS2 Interfaces, including simulation backend mode where it accepts actuator commands
 
 ---
 
@@ -41,9 +42,9 @@ All present demo versions are distributed privately for evaluation purposes.
 
 | Requirement | Description |
 |--------------|-------------|
-| **OS** | Windows 10 or 11 (64-bit) |
+| **OS** | Windows 10 or 11 (64-bit), Linux (tested on Ubuntu 22.04; AppImage/.tar.gz packages) |
 | **GPU** | OpenGL 3.3+ compatible |
-| **Storage** | ~38 MB free space |
+| **Storage** | ~39 MB free space |
 | **Memory** | 4 GB RAM recommended |
 
 ---
@@ -57,8 +58,9 @@ All present demo versions are distributed privately for evaluation purposes.
 ---
 
 ## File Locations
-- Missions: `/missions/` (`.json` configs)  
-- Run data: `/runs/` (includes `.json` summaries and `.csv` flight data)
+- Missions: `$DATA_DIR/missions/` (`.json` configs)  
+- Run data: `$DATA_DIR/runs/` (includes `.json` summaries and `.csv` flight data)
+- `$DATA_DIR` defaults to APPDATA on Windows or XDG_DATA_HOME on Linux, unless overriden by user (`--data /my/data/dir`)
 
 ---
 
