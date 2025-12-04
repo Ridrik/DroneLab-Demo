@@ -1,10 +1,16 @@
+## v0.4.1 - December 2025
+### Fixed
+- Resolved issue when adding new waypoints interactively after all previous waypoints had been reached.
+### Notes
+- No new features added
+
 ## v0.4.0 - November 2025
 ### Added
 - ROS2 Interface: receive simulator data from the simulator, and send actuator commands when on backend mode.
 See `docs/ros2_interface.md` for more. Available on Linux builds.
 - AppImage distribution option for Linux builds.
 ### Updated
-- User data (missions, runs, settings, logs) are now pointed to user default locations (e.g APPDATA on Windows, XDG_DATA_HOME on Linux)
+- User data (missions, runs, settings, logs) are now pointed to user default locations (e.g APPDATA on Windows, XDG_DATA_HOME on Linux). Previously, they'd point to the working directory.
 
 ## v0.3.0 - November 2025
 ### Added
