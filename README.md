@@ -2,6 +2,7 @@
 
 **Platform:** Windows 10/11 (64-bit), Linux (tested on Ubuntu 22.04, AppImage/.tar.gz packages)   
 **Developer:** Rodrigo Rosa  
+
 ---
 
 ## 🌐 Project Showcase & Live Media
