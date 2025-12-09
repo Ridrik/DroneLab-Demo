@@ -1,11 +1,11 @@
 # Actuator Model
 
 Actuators are a core feature in enabling the dynamics and controlability of a vehicle. This software simulates the actuator motors following base motor dynamics and ESC commands. This is used, in turn, both for the dynamics integration, and optionally for firmware-like internal control. 
-Two main submodels are used for the motor dynamics, as well as the simulation of physical properties such Temperature or shutdown feature. This document briefly summarizes both models below.
+Two main submodels are used, which affects both the ESC commanding and the physical quantities simulated. This document briefly summarizes both models below, as well as the common motor dynamics.
 
 ---
 
-### 3.1. Open-Loop ESC Model
+### 1.1. Open-Loop ESC Model
 
 This is the simpler model.
 
@@ -19,7 +19,7 @@ This is the simpler model.
 
 ---
 
-### 3.2. Closed-Loop ESC Model (Advanced)
+### 1.2. Closed-Loop ESC Model (Advanced)
 
 This model introduces **sensor feedback inside the ESC**.
 
@@ -38,7 +38,7 @@ This model introduces **sensor feedback inside the ESC**.
 
 ---
 
-## 4. Actuator Dynamics
+## 2. Actuator Dynamics
 
 Motor rotational dynamics follow:
 `J * ω_dot = τ_motor - τ_load`
@@ -53,9 +53,9 @@ This captures inertia, propeller load, and electrical dynamics.
 
 ---
 
-## 5. Thermal and ESC Voltage Modeling (Advanced Mode)
+## 3. Thermal and ESC Voltage Modeling (Advanced Mode)
 
-### 5.1 Motor Temperature
+### 3.1 Motor Temperature
 
 Motor temperature `T` is updated as a first-order thermal system:
 **τ_thermal * dT/dt = T_target - T_current**
@@ -70,7 +70,7 @@ T_target = T_ambient + (P_elec + P_mech) * R_th
 - Sensor noise can be added for realism.  
 - Temperature is clamped between ambient and maximum ESC temperature.
 
-### 5.2 ESC Voltage
+### 3.2 ESC Voltage
 
 The voltage delivered to the motor:
 
@@ -79,22 +79,21 @@ The voltage delivered to the motor:
 - Includes wiring resistance and internal ESC voltage drop.  
 - Noise can be added to simulate sensor uncertainty.  
 
-### 5.3 ESC Shutdown
+### 3.3 ESC Shutdown
 
 The ESC shuts down if:
 
 `V_esc < V_cutoff OR T_motor > T_max`
+
+Which, in turn, nullifies the eletric current, and, by propagation, the motor torque, leading to a rapid deceleration.
 
 This simulates **low-voltage cutoff** and **thermal protection**, preventing overcurrent or overheating.
 
 
 ---
 
-## 6. Summary
+## 4. Summary
 
-- **Frame:** Quadcopter X, body NED frame  
-- **Input:** HIL_ACTUATOR_CONTROLS (first four floats), only needed in MAVLink backend mode  
-- **Motor mapping:** Configurable in GUI. Defaults to 0: FR (CCW), 1: RL (CCW), 2: FL (CW), 3: RR (CW)  
 - **ESC models:**  
   - Open-loop: throttle → voltage → thrust  
   - Closed-loop: throttle → speed → PID → voltage → thrust  
