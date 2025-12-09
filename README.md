@@ -2,8 +2,6 @@
 
 **Platform:** Windows 10/11 (64-bit), Linux (tested on Ubuntu 22.04, AppImage/.tar.gz packages)   
 **Developer:** Rodrigo Rosa  
-**Version:** v4.0.0 Demo (November 2025)  
-
 ---
 
 ## 🌐 Project Showcase & Live Media
@@ -23,6 +21,7 @@ It focuses on **Guidance, Navigation, and Control (GNC)** — providing a lightw
 ---
 
 ### 🎯 Key Features
+- Main multicopter vehicle types available with configurable allocation
 - Waypoint following with configurable parameters  
 - Real-time visualization of flight dynamics  
 - Replay and telemetry visualization  
