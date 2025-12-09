@@ -12,7 +12,7 @@ The ROS2 interface enables researchers to integrate the simulator with ROS2-nati
 - The ROS2 interface is a **separate shared library**.  
 - The Plugin is loaded dynamically at runtime. Note that, ros2 dependencies are expected for it to load successfully. 
 - Initialization:  
-  - The plugin calls `rclcpp::init()` if ROS2 is not already running.  
+  - Click on the ROS2 Toggle on the `ROS2 Interface` tab in Session Settings. Optionally, enable it by default on the same tab
   - Users can optionally provide ROS2-specific arguments (`argc`/`argv`) for parameter overrides.
 
 ---
@@ -23,6 +23,7 @@ The plugin publishes sensor and simulation topics at configurable rates:
 
 | Topic (Default) | Message Type | Description | Default Rate |
 |-------|--------------|-------------|--------------|
+| `/clock`| `rosgraph_msgs::msg::Clock` | Simulation time (microseconds) | Adaptative Rate, microseconds |
 | `/imu/data` | `sensor_msgs/msg/Imu` | IMU measurements (gyro + accelerometer) | Simulator IMU rate |
 | `/mag` | `sensor_msgs/msg/MagneticField` | Magnetometer readings | Matches IMU rate if available |
 | `/baro` | `sensor_msgs/msg/FluidPressure` | Barometer pressure | Matches barometer update rate |
@@ -60,16 +61,50 @@ The plugin subscribes to actuator commands:
 ```json
 {
   "ros2_settings": {
-      "actuator_qos": 10,
       "enable_interface_default": false,
       "node_name": "sensor_interface",
-      "sensor_qos": 100,
-      "topic_actuator_cmds": "/actuator",
-      "topic_baro": "/baro",
-      "topic_clock": "/clock",
-      "topic_gps": "/gps/fix",
-      "topic_imu": "/imu/data",
-       "topic_mag": "/mag"
+      "topic_imu": {
+        "name": "/imu/data",
+        "qos": {
+            "reliability": "best_effort",
+            "depth": 5
+          }
+      },
+      "topic_mag": {
+        "name": "/mag",
+        "qos": {
+            "reliability": "best_effort",
+            "depth": 5
+          }
+      },
+      "topic_baro": {
+        "name": "/baro",
+        "qos": {
+            "reliability": "best_effort",
+            "depth": 5
+          }
+      },
+      "topic_gps": {
+        "name": "/gps/fix",
+        "qos": {
+            "reliability": "reliable",
+            "depth": 5
+          }
+      },
+      "topic_actuator_cmds": {
+        "name": "/actuator",
+        "qos": {
+            "reliability": "reliable",
+            "depth": 5
+          }
+      },
+      "topic_clock": {
+        "name": "/clock",
+        "qos": {
+            "reliability": "best_effort",
+            "depth": 5
+          }
+      }
   },
 }
 ```

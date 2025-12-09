@@ -1,3 +1,10 @@
+## v0.5.0 - December 2025
+### Added
+- Multicopter types: Added hexacopter and octocopter vehicle options. Find it in the `Vehicle` tab on the `Editor` menu.
+- Launcher Pad collision mechanism.
+### Updated
+- ROS2 Interface: Refactored configuration. Apart from topic names, individual QoS reliability and depth are configurable in the user settings panel.
+
 ## v0.4.1 - December 2025
 ### Fixed
 - Resolved issue when adding new waypoints interactively after all previous waypoints had been reached.

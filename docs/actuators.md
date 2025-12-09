@@ -1,77 +1,7 @@
-# Quadcopter Actuator Model (X Configuration)
+# Actuator Model
 
-This document describes the quadcopter actuator system used in the simulator.  
-It covers the motor geometry, actuator default input mapping, and the two internal
-ESC/thrust models (open-loop and closed-loop).
-
----
-
-## 1. Frame Geometry: Quadcopter X
-
-The quadcopter is modelled in **body NED coordinates**:
-
-- **+X** → forward  
-- **+Y** → right  
-- **+Z** → down  
-
-The quad is in **X configuration**, with motors arranged diagonally around the center of mass.
-
-### Motor Indexing and Rotation Directions
-
-Motor indices follow the simulator’s **actuator order 0–3**, all normalized 0–1. The actual order and orientation is configurable
-in the GUI Editor, under the `Mixer` tab. The default configuration is as follows:
-
-            Front (+X)
-                ^
-                |
-    (2) CW         (0) CCW
-        \             /
-         \           /
-          \         /
-           \       /
-            -------
-           /       \
-          /         \
-         /           \
-    (1) CCW          (3) CW
-                |
-                v
-            Back (-X)
-
-
-| Motor Index | Position      | Rotation |
-|-------------|----------------|----------|
-| **0**       | Front Right    | CCW       |
-| **1**       | Rear Left      | CCW       |
-| **2**       | Front Left     | CW      |
-| **3**       | Rear Right     | CW      |
-
-This arrangement ensures that opposite motors spin in the same direction for torque balance.
-
----
-
-## 2. Backend Actuator Input Mapping
-
-When the simulator is in backend mode - connected via UDP with MAVlink message formatting - it expects the **HIL_ACTUATOR_CONTROLS** message, taking the first four floats:
-
-- `controls[0]` → Motor 0
-- `controls[1]` → Motor 1
-- `controls[2]` → Motor 2
-- `controls[3]` → Motor 3
-
-Each value must be in the normalized range:
-`0.0 = no thrust`
-`1.0 = maximum thrust`
-
-If values are out of range or missing, rotor thrust may be clamped or the drone may fail to lift.
-
-**Note: Ensure that your flight controller is in sync with the Mixer mapping by checking or edit in the GUI Editor (`Mixer` Tab)**
-
----
-
-## 3. Actuator / ESC Models
-
-The simulator currently supports **two actuator modelling modes**:
+Actuators are a core feature in enabling the dynamics and controlability of a vehicle. This software simulates the actuator motors following base motor dynamics and ESC commands. This is used, in turn, both for the dynamics integration, and optionally for firmware-like internal control. 
+Two main submodels are used for the motor dynamics, as well as the simulation of physical properties such Temperature or shutdown feature. This document briefly summarizes both models below.
 
 ---
 
@@ -172,6 +102,3 @@ This simulates **low-voltage cutoff** and **thermal protection**, preventing ove
 - **Advanced mode:** includes motor temperature, ESC voltage drop, ESC shutdown logic
 
 ---
-
-
-
