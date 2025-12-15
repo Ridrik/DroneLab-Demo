@@ -1,3 +1,11 @@
+## v0.5.1 - December 2025
+### Updated
+- Small refactor to data loading for replay sessions, and warning to users.
+- New place for notifications and timings.
+### Fixed
+- Resolved issue when attempting to close the App while replay data was being uploaded. 
+- Fixed replay issue on trajectory trails when sessions were long enough.
+
 ## v0.5.0 - December 2025
 ### Added
 - Multicopter types: Added hexacopter and octocopter vehicle options. Find it in the `Vehicle` tab on the `Editor` menu.
