@@ -1,3 +1,17 @@
+## v0.5.3 - December 2025
+### Added
+- Exception & signal handling: Users are now properly notified in the (unlikely) case of fatal program termination. Includes visual notification on Windows, also on Linux if user has 'zenity' or 'kdialog' installed.
+- Crash reports on exception & signal handling, for data collection and analysis (seen on default data directory on Linux and Windows (XDG_DATA_HOME/DroneLab and LocalAppData/DroneLab, respectively).
+### Updated
+- Fixed a termination issue that could occur if the program suffered an exception/abnormal signal.
+- Fixed an issue related with program normal termination when ros2_interface plugin was enabled (linux only).
+- Internal configuration changes.
+
+## v0.5.2 - December 2025
+### Fixed
+- Resolved issue related to session settings display when on replay sessions.
+- Overall performance improvements.
+
 ## v0.5.1 - December 2025
 ### Updated
 - Small refactor to data loading for replay sessions, and warning to users.
