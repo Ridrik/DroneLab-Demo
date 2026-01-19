@@ -1,3 +1,7 @@
+## v0.5.4 - January 2025
+### Updated
+- Included `fault` library into DroneLab, granting it automatic visibility and traceability against common software faults.
+
 ## v0.5.3 - December 2025
 ### Added
 - Exception & signal handling: Users are now properly notified in the (unlikely) case of fatal program termination. Includes visual notification on Windows, also on Linux if user has 'zenity' or 'kdialog' installed.

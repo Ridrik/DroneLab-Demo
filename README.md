@@ -44,7 +44,7 @@ All present demo versions are distributed privately for evaluation purposes.
 |--------------|-------------|
 | **OS** | Windows 10 or 11 (64-bit), Linux (tested on Ubuntu 22.04; AppImage/.tar.gz packages) |
 | **GPU** | OpenGL 3.3+ compatible |
-| **Storage** | ~39 MB free space |
+| **Storage** | ~40-50 MB free space |
 | **Memory** | 4 GB RAM recommended |
 
 ---
