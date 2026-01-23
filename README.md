@@ -81,6 +81,7 @@ No source modifications have been made unless otherwise noted.
 | [**Dear ImGui**](https://github.com/ocornut/imgui) | Immediate Mode GUI library | MIT |
 | [**ImPlot**](https://github.com/epezent/implot) | Plotting library for ImGui | MIT |
 | [**nlohmann/json**](https://github.com/nlohmann/json) | JSON configuration and mission handling | MIT |
+| [**fault**](https://github.com/Ridrik/fault) | Crash handler and Panic library | MIT |
 | [**cpptrace**](https://github.com/jeremy-rifkin/cpptrace) | Lightweight stack trace and debugging helper | MIT |
 | [**GLAD**](https://glad.dav1d.de/) | OpenGL function loader | MIT |
 | [**FreeType**](https://gitlab.freedesktop.org/freetype/freetype) | Font rendering engine | FreeType License |
