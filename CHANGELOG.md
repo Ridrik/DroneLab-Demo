@@ -3,6 +3,8 @@
 - Fixed issue with logging of events data, that would disable it from being properly loaded for replay
 ## Added
 - Toggle to display 3D event labels
+- Headless mode: run the application in headless mode by appending `--headless`. It will default to select the latest configuration in the `missions` folder. Override it with `--config=path/to/my/config.json`.
+- Argument `--quiet`, that suppresses outputs to the standard terminals (log files are unchanged).
 ## Updated
 - Internal minor enhancements
 
