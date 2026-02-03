@@ -1,8 +1,16 @@
-## v0.5.4 - January 2025
+## v0.5.5 - February 2026
+## Fixed
+- Fixed issue with logging of events data, that would disable it from being properly loaded for replay
+## Added
+- Toggle to display 3D event labels
+## Updated
+- Internal minor enhancements
+
+## v0.5.4 - January 2026
 ### Updated
 - Included `fault` library into DroneLab, granting it automatic visibility and traceability against common software faults.
 
-## v0.5.3 - December 2025
+## v0.5.3 - December 2026
 ### Added
 - Exception & signal handling: Users are now properly notified in the (unlikely) case of fatal program termination. Includes visual notification on Windows, also on Linux if user has 'zenity' or 'kdialog' installed.
 - Crash reports on exception & signal handling, for data collection and analysis (seen on default data directory on Linux and Windows (XDG_DATA_HOME/DroneLab and LocalAppData/DroneLab, respectively).
