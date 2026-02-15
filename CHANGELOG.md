@@ -1,3 +1,7 @@
+## v0.5.6 - February 2026
+## Updated
+- New internal optimizations of overall data flow on simulations.
+
 ## v0.5.5 - February 2026
 ## Fixed
 - Fixed issue with logging of events data, that would disable it from being properly loaded for replay
