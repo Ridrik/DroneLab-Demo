@@ -21,20 +21,21 @@ It focuses on **Guidance, Navigation, and Control (GNC)** — providing a lightw
 
 ---
 
-### 🎯 Key Features
-- Main multicopter vehicle types available with configurable allocation
+### Key Features
+- Main multicopter vehicle types available with configurable mixer allocation
 - Waypoint following with configurable parameters  
-- Real-time visualization of flight dynamics  
+- Real-time visualization of flight data, via telemetry, plots, trails and more.
 - Replay and telemetry visualization  
-- Adjustable GNC parameters  
+- Adjustable Flight and GNC parameters, editable and loadable missions.
 - Lightweight and intuitive interface  
 - (Experimental) MAVLink and ROS2 Interfaces, including simulation backend mode where it accepts actuator commands
 
 ---
 
-### 🧠 Purpose
-DroneLab is designed for **educational use**, **entry-level research**, and **GNC/Flight visualization**.  
-All present demo versions are distributed privately for evaluation purposes.
+### Author's Note / Purpose
+The idea behind this software was to build a simulation tool that can provide users with easier experimentation capabilities related with UAVs, such as configurability of scenarios, visualization of data, and replayability, as well as external interfaces that enable custom external flight controllers.   
+The purpose of this simulator is to eventually serve as both a tool for educational level (undergrad/grad), as well as for experimental purposes at research level or institutional level, as features and refinements are made.
+
 
 ---
 
@@ -53,14 +54,14 @@ All present demo versions are distributed privately for evaluation purposes.
 
 1. Download the latest installer from the [Releases page](https://github.com/ridrik/DroneLab-Demo/releases/latest).
 2. Follow the on-screen instructions.  
-3. Launch DroneLab from the Start Menu or Desktop shortcut.
+3. Launch DroneLab executable from installed folder.
 
 ---
 
 ## File Locations
 - Missions: `$DATA_DIR/missions/` (`.json` configs)  
 - Run data: `$DATA_DIR/runs/` (includes `.json` summaries and `.csv` flight data)
-- `$DATA_DIR` defaults to APPDATA on Windows or XDG_DATA_HOME on Linux, unless overriden by user (`--data /my/data/dir`)
+- `$DATA_DIR` defaults to Local APPDATA on Windows or XDG_DATA_HOME on Linux, unless overriden by user (`--data /my/data/dir`)
 
 ---
 
@@ -89,7 +90,7 @@ No source modifications have been made unless otherwise noted.
 
 ---
 
-### 🎨 Fonts and Assets
+### Fonts and Assets
 
 | Asset | Source | License |
 | ------ | ------- | -------- |
@@ -102,14 +103,14 @@ All included fonts and textures retain their original licenses and attribution n
 
 ---
 
-### 🙏 Acknowledgment
+### Acknowledgment
 
 This software would not be possible without the contributions of the open-source community.  
 All trademarks and copyrights belong to their respective owners.
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This demo software is provided **for educational and research purposes only**.  
 It is distributed **as-is**, without warranty or liability.  
