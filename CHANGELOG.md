@@ -1,3 +1,7 @@
+## v0.6.0 - June 2026
+## Updated
+- Simulation functionality has been turnt into a separate module
+
 ## v0.5.6 - February 2026
 ## Updated
 - New internal optimizations of overall data flow on simulations.
